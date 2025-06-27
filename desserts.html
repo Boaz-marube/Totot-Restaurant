@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Totot Restaurant</title>
     <link rel="stylesheet" href="base/css/style.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css "
@@ -14,83 +14,184 @@
       rel="stylesheet"
     />
     <script src="base/js/main.js" defer></script>
+    <!-- Include Alpine.js -->
   </head>
 
   <body
-
-      
     class="box-border min-h-screen text-black bg-slate-50 dark:bg-black dark:text-white"
   >
     <header
-      class="sticky top-0 z-10 text-black bg-customBrown dark:bg-brown-900 dark:text-white"
+      class="sticky top-0 z-10 text-black shadow-md bg-customBrown dark:bg-brown-900 dark:text-white"
     >
-      <section
-        class="max-w-[1200px] mx-auto p-4 flex justify-between items-center"
+      <div
+        class="max-w-[1200px] mx-auto px-4 py-3 flex justify-between items-center"
       >
-        <div class="text-3xl font-medium">
+        <!-- Logo and Restaurant Name -->
+        <div class="flex items-center space-x-2">
           <img
             src="base/images/toto logo.png"
             alt="Toto Logo"
-            class="w-9 h-9"
+            class="rounded-full w-9 h-9"
           />
         </div>
-        <div>
-          <button id="theme-toggle" class="absolute text-2xl -translate-x-20">
-            &#127769;
-          </button>
-          <button
-            id="hamburger-button"
-            class="relative w-8 h-8 text-3xl cursor-pointer md:hidden focus:outline-none"
-          >
-            <div
-              class="bg-white rounded w-8 h-1 top-4 -mt-0.5 transition-all duration-500 before:content-[''] before:bg-white before:w-8 before:h-1 before:rounded before:absolute before:transition-all before:duration-500 before:-translate-x-4 before:-translate-y-3 after:content-[''] after:bg-white after:w-8 after:h-1 after:rounded after:absolute after:transition-all after:duration-500 after:-translate-x-4 after:translate-y-3"
-            ></div>
-          </button>
 
-          <nav
-            class="hidden mr-10 space-x-8 text-xl md:block"
-            aria-label="main"
-          >
-            <a href="#hero" class="hover:opacity-90">Home</a>
-            <a href="#menu" class="hover:opacity-90"
-              >Menu <span>&#9660;</span></a
-            >
-            <a href="#story" class="hover:opacity-90">Our Story</a>
-            <a href="#dishes" class="hover:opacity-90">Signature Dishes</a>
-            <a href="#feedback" class="hover:opacity-90">Feedback Form</a>
-          </nav>
-        </div>
-      </section>
-
-      <section
-        id="mobile-menu"
-        class="absolute flex-col justify-center hidden w-full text-3xl text-white origin-top bg-black top-16 animate-open-menu"
-      >
+        <!-- Desktop Navigation -->
         <nav
-          class="flex flex-col items-center min-h-screen py-8"
-          aria-label="mobile"
+          class="items-center hidden space-x-6 md:flex"
+          aria-label="Main navigation"
         >
-          <a href="#hero" class="w-full py-6 text-center hover:opacity-90"
+          <a
+            href="index.html#hero-section"
+            class="font-normal text-white transition-colors text-md hover:text-amber-700 dark:hover:text-amber-300"
             >Home</a
           >
-          <a href="#menu" class="w-full py-6 text-center hover:opacity-90"
-            >Menu</a
-          >
 
-          <a href="#our_story" class="w-full py-6 text-center hover:opacity-90"
+          <!-- Menu with Dropdown -->
+          <div class="relative">
+            <button
+              id="menu-button"
+              class="flex items-center font-normal text-white transition-colors text-md hover:text-amber-700 dark:hover:text-amber-300"
+              aria-expanded="false"
+            >
+              Menu
+              <span id="menu-chevron" class="ml-1 transition-transform"
+                ><i class="mt-3 fa-solid fa-angle-down dark:text-white"></i
+              ></span>
+            </button>
+            <div
+              id="menu-dropdown"
+              class="absolute left-0 z-20 hidden w-48 py-1 mt-2 font-normal text-white bg-white rounded-md shadow-lg dark:bg-gray-800 text-md"
+            >
+              <a
+                href="starter.html"
+                class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700"
+                >Starters</a
+              >
+              <a
+                href="maindishes.html"
+                class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700"
+                >Main Dishes</a
+              >
+              <a
+                href="drinks.html"
+                class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700"
+                >Drinks</a
+              >
+              <a
+                href="desserts.html"
+                class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700"
+                >Desserts</a
+              >
+            </div>
+          </div>
+
+          <a
+            href="index.html#story"
+            class="font-normal text-white transition-colors hover:text-amber-700 dark:hover:text-amber-300 text-md"
             >Our Story</a
           >
-          <a href="#dishes" class="w-full py-6 text-center hover:opacity-90"
+          <a
+            href="index.html#signature-dish"
+            class="font-normal text-white transition-colors hover:text-amber-700 dark:hover:text-amber-300 text-md"
             >Signature Dishes</a
           >
-          <a href="#feedback" class="w-full py-6 text-center hover:opacity-90"
+          <a
+            href="#feedback"
+            class="font-normal text-white transition-colors hover:text-amber-700 dark:hover:text-amber-300 text-md"
+            >Feedback</a
+          >
+
+          <!-- Dark/Light Mode Toggle -->
+          <button
+            id="theme-toggle"
+            class="p-2 transition-colors rounded-full hover:bg-amber-200 dark:hover:bg-gray-700"
+          >
+            <span class="dark:hidden">🌙</span>
+            <span class="hidden dark:inline">☀️</span>
+          </button>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center space-x-4 md:hidden">
+          <button
+            id="hamburger-button"
+            class="flex flex-col items-center justify-center w-10 h-10 focus:outline-none"
+          >
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line mt-1.5"></span>
+            <span class="hamburger-line mt-1.5"></span>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="absolute left-0 hidden w-full text-white bg-black shadow-lg top-full dark:bg-gray-900"
+      >
+        <nav class="flex flex-col py-4" aria-label="Mobile navigation">
+          <a href="index.html#hero-section" class="px-6 py-3 transition-colors hover:bg-gray-800"
+            >Home</a
+          >
+
+          <div class="mobile-dropdown">
+            <button
+              class="flex items-center justify-between w-full px-6 py-3 text-left transition-colors mobile-dropdown-button hover:bg-gray-800"
+            >
+              Menu <span class="text-xl mobile-dropdown-icon">+</span>
+            </button>
+            <div
+              class="hidden bg-gray-900 mobile-dropdown-content dark:bg-black"
+            >
+              <a
+                href="starter.html"
+                class="block px-10 py-2 transition-colors hover:bg-gray-800"
+                >Starters</a
+              >
+              <a
+                href="maindishes.html"
+                class="block px-10 py-2 transition-colors hover:bg-gray-800"
+                >Main Dishes</a
+              >
+              <a
+                href="drinks.html"
+                class="block px-10 py-2 transition-colors hover:bg-gray-800"
+                >Drinks</a
+              >
+              <a
+                href="#desserts"
+                class="block px-10 py-2 transition-colors hover:bg-gray-800"
+                >Desserts</a
+              >
+            </div>
+          </div>
+
+          <a href="index.html#story" class="px-6 py-3 transition-colors hover:bg-gray-800"
+            >Our Story</a
+          >
+          <a
+            href="index.html#signature-dish"
+            class="px-6 py-3 transition-colors hover:bg-gray-800"
+            >Signature Dishes</a
+          >
+          <a
+            href="#feedback"
+            class="px-6 py-3 transition-colors hover:bg-gray-800"
             >Feedback Form</a
           >
+
+          <!-- Mobile Theme Toggle -->
+          <button
+            id="mobile-theme-toggle"
+            class="px-6 py-3 text-left transition-colors hover:bg-gray-800"
+          >
+            <span class="dark:hidden">🌙 Dark Mode</span>
+            <span class="hidden dark:inline">☀️ Light Mode</span>
+          </button>
         </nav>
-      </section>
+      </div>
     </header>
 
-    <main>
+    <main id="desserts">
       <section class="bg-menu dark:bg-slate-950">
         <section class="container w-full px-4 py-12 mx-auto">
           <div class="flex items-center justify-between mb-8">
@@ -513,7 +614,7 @@
                 <ul class="space-y-3">
                   <li>
                     <a
-                      href="#"
+                      href="index.html#hero-section"
                       class="flex items-center space-x-2 transition-colors text-amber-200 hover:text-white"
                     >
                       <span>Home</span>
@@ -529,7 +630,7 @@
                   </li>
                   <li>
                     <a
-                      href="#story"
+                      href="index.html#story"
                       class="flex items-center space-x-2 transition-colors text-amber-200 hover:text-white"
                     >
                       <span>Our Story</span>
@@ -537,7 +638,7 @@
                   </li>
                   <li>
                     <a
-                      href="#contact"
+                      href="index.html#contact"
                       class="flex items-center space-x-2 transition-colors text-amber-200 hover:text-white"
                     >
                       <span>Contact Us</span>
