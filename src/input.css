@@ -75,3 +75,62 @@ body {
   transform: translateY(1px);
   box-shadow: 0 2px 10px rgba(139, 90, 43, 0.4);
 }
+/* Hamburger icon styles */
+.hamburger-line {
+  @apply block w-6 h-0.5 bg-black dark:bg-white transition-all duration-300;
+}
+
+#hamburger-button.open .hamburger-line:nth-child(1) {
+  @apply rotate-45 translate-y-2;
+}
+
+#hamburger-button.open .hamburger-line:nth-child(2) {
+  @apply opacity-0;
+}
+
+#hamburger-button.open .hamburger-line:nth-child(3) {
+  @apply -rotate-45 -translate-y-2;
+}
+
+/* Mobile menu styles */
+.mobile-menu-link {
+  @apply px-6 py-3 transition-colors hover:bg-gray-800;
+}
+
+.mobile-submenu-link {
+  @apply block px-10 py-2 hover:bg-gray-800;
+}
+
+.mobile-menu-dropdown-button {
+  @apply flex items-center justify-between w-full px-6 py-3 text-left transition-colors hover:bg-gray-800;
+}
+
+.mobile-menu-dropdown-content {
+  @apply bg-gray-900 dark:bg-black;
+}
+
+.mobile-theme-toggle-button {
+  @apply px-6 py-3 text-left transition-colors hover:bg-gray-800;
+}
+:root {
+  --header-height: 72px; /* Default height matching your header */
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 60px; /* Adjust for mobile header height */
+  }
+}
+
+#hero-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Sliding Animation */
+#hero-section {
+  transition: transform 1s ease-in-out; /* Smooth transition for sliding */
+}
+html {
+  scroll-behavior: smooth;
+}
