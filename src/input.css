@@ -134,3 +134,39 @@ body {
 html {
   scroll-behavior: smooth;
 }
+.bg-customBrown {
+  background-color: #b74c3b; /* Brown color */
+}
+/* Dark mode adjustments */
+/* Yellow underline for light mode */
+.underline-yellow {
+  border-bottom: 3px solid #facc15; /* Yellow underline */
+}
+/* Adjusted yellow underline for dark mode */
+.dark .underline-yellow {
+  border-bottom: 3px solid #ffcc66; /* Lighter yellow for dark mode */
+}
+.bg-primary {
+  background-color: #b74c3b; /* Primary color for header/footer */
+}
+.text-primary {
+  color: #b74c3b;
+}
+.bg-secondary {
+  background-color: #f5ebe0; /* Secondary color for content areas */
+}
+.text-secondary {
+  color: #f5ebe0;
+}
+.border-secondary {
+  border-color: #f5ebe0;
+}
+.dark .bg-secondary {
+  background-color: #37302f;
+}
+.dark .text-secondary {
+  color: #f5ebe0;
+}
+.dark .border-secondary {
+  border-color: #f5ebe0;
+}
