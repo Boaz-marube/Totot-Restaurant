@@ -26,7 +26,7 @@ This project was built using a modern front-end stack:
 -   **HTML5:** For the semantic structure and content of the pages.
 -   **Tailwind CSS:** A utility-first CSS framework for rapid and custom styling.
 -   **JavaScript:** For all client-side interactivity, including the chatbot, form validation, and theme toggling.
--   **[Name of AI Platform/API]:** Used to power the "Ask the Chef" chatbot functionality
+-   **Gemini AI and Python:** Used to power the "Ask the Chef" chatbot functionality
 -   **Git & GitHub:** For version control and collaborative development.
 
 ## ⚙️ How to Run Locally
@@ -107,4 +107,4 @@ This project was a collaborative effort by a dedicated team of four. We collabor
 | **Saba Haddis**    | **UI/UX Design**       |
 | **Boaz Marube**     | **Full Stack dev**     |
 | **Bereket Eshete**  | **Full Stack dev** |
-| **Ushindi** | **AI Integration & QA Testing**       |
+| **Ushindi Sidi** | **AI Integration & QA Testing**       |
