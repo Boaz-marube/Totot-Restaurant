@@ -11,6 +11,7 @@ module.exports = {
         menu: "#FFF1C6",
         "menu-title": "#4A3A0C",
         "contact-bg": "#93532A",
+        "dish-des": "#4A3A0C",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

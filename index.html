@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Totot Restaurant</title>
     <link rel="stylesheet" href="base/css/style.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css "
@@ -14,109 +14,213 @@
       rel="stylesheet"
     />
     <script src="base/js/main.js" defer></script>
+    <!-- Include Alpine.js -->
   </head>
 
   <body
     class="box-border min-h-screen text-black bg-slate-50 dark:bg-black dark:text-white"
   >
     <header
-      class="sticky top-0 z-10 text-black bg-customBrown dark:bg-brown-900 dark:text-white"
+      class="sticky top-0 z-10 text-black shadow-md bg-customBrown dark:bg-brown-900 dark:text-white"
     >
-      <section
-        class="max-w-[1200px] mx-auto p-4 flex justify-between items-center"
+      <div
+        class="max-w-[1200px] mx-auto px-4 py-3 flex justify-between items-center"
       >
-        <div class="text-3xl font-medium">
+        <!-- Logo and Restaurant Name -->
+        <div class="flex items-center space-x-2">
           <img
             src="base/images/toto logo.png"
             alt="Toto Logo"
-            class="w-9 h-9"
+            class="rounded-full w-9 h-9"
           />
         </div>
-        <div>
-          <button id="theme-toggle" class="absolute text-2xl -translate-x-20">
-            &#127769;
-          </button>
-          <button
-            id="hamburger-button"
-            class="relative w-8 h-8 text-3xl cursor-pointer md:hidden focus:outline-none"
-          >
-            <div
-              class="bg-white rounded w-8 h-1 top-4 -mt-0.5 transition-all duration-500 before:content-[''] before:bg-white before:w-8 before:h-1 before:rounded before:absolute before:transition-all before:duration-500 before:-translate-x-4 before:-translate-y-3 after:content-[''] after:bg-white after:w-8 after:h-1 after:rounded after:absolute after:transition-all after:duration-500 after:-translate-x-4 after:translate-y-3"
-            ></div>
-          </button>
 
-          <nav
-            class="hidden mr-10 space-x-8 text-xl md:block"
-            aria-label="main"
-          >
-            <a href="#hero" class="hover:opacity-90">Home</a>
-            <a href="#menu" class="hover:opacity-90"
-              >Menu <span>&#9660;</span></a
-            >
-            <a href="#story" class="hover:opacity-90">Our Story</a>
-            <a href="#dishes" class="hover:opacity-90">Signature Dishes</a>
-            <a href="#feedback" class="hover:opacity-90">Feedback Form</a>
-          </nav>
-        </div>
-      </section>
-
-      <section
-        id="mobile-menu"
-        class="absolute flex-col justify-center hidden w-full text-3xl text-white origin-top bg-black top-16 animate-open-menu"
-      >
+        <!-- Desktop Navigation -->
         <nav
-          class="flex flex-col items-center min-h-screen py-8"
-          aria-label="mobile"
+          class="items-center hidden space-x-6 md:flex"
+          aria-label="Main navigation"
         >
-          <a href="#hero" class="w-full py-6 text-center hover:opacity-90"
+          <a
+            href="#hero"
+            class="font-normal text-white transition-colors text-md hover:text-amber-700 dark:hover:text-amber-300"
             >Home</a
           >
-          <a href="#menu" class="w-full py-6 text-center hover:opacity-90"
-            >Menu</a
-          >
 
-          <a href="#our_story" class="w-full py-6 text-center hover:opacity-90"
+          <!-- Menu with Dropdown -->
+          <div class="relative">
+            <button
+              id="menu-button"
+              class="flex items-center font-normal text-white transition-colors text-md hover:text-amber-700 dark:hover:text-amber-300"
+              aria-expanded="false"
+            >
+              Menu
+              <span id="menu-chevron" class="ml-1 transition-transform"
+                ><i class="mt-3 fa-solid fa-angle-down dark:text-white"></i
+              ></span>
+            </button>
+            <div
+              id="menu-dropdown"
+              class="absolute left-0 z-20 hidden w-48 py-1 mt-2 font-normal text-white bg-white rounded-md shadow-lg dark:bg-gray-800 text-md"
+            >
+              <a
+                href="#starters"
+                class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700"
+                >Starters</a
+              >
+              <a
+                href="#main-dishes"
+                class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700"
+                >Main Dishes</a
+              >
+              <a
+                href="#drinks"
+                class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700"
+                >Drinks</a
+              >
+              <a
+                href="#desserts"
+                class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-gray-700"
+                >Desserts</a
+              >
+            </div>
+          </div>
+
+          <a
+            href="#story"
+            class="font-normal text-white transition-colors hover:text-amber-700 dark:hover:text-amber-300 text-md"
             >Our Story</a
           >
-          <a href="#dishes" class="w-full py-6 text-center hover:opacity-90"
+          <a
+            href="#Signature-Dish"
+            class="font-normal text-white transition-colors hover:text-amber-700 dark:hover:text-amber-300 text-md"
             >Signature Dishes</a
           >
-          <a href="#feedback" class="w-full py-6 text-center hover:opacity-90"
+          <a
+            href="#feedback"
+            class="font-normal text-white transition-colors hover:text-amber-700 dark:hover:text-amber-300 text-md"
+            >Feedback</a
+          >
+
+          <!-- Dark/Light Mode Toggle -->
+          <button
+            id="theme-toggle"
+            class="p-2 transition-colors rounded-full hover:bg-amber-200 dark:hover:bg-gray-700"
+          >
+            <span class="dark:hidden">🌙</span>
+            <span class="hidden dark:inline">☀️</span>
+          </button>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center space-x-4 md:hidden">
+          <button
+            id="hamburger-button"
+            class="flex flex-col items-center justify-center w-10 h-10 focus:outline-none"
+          >
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line mt-1.5"></span>
+            <span class="hamburger-line mt-1.5"></span>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="absolute left-0 hidden w-full text-white bg-black shadow-lg top-full dark:bg-gray-900"
+      >
+        <nav class="flex flex-col py-4" aria-label="Mobile navigation">
+          <a href="#hero" class="px-6 py-3 transition-colors hover:bg-gray-800"
+            >Home</a
+          >
+
+          <div class="mobile-dropdown">
+            <button
+              class="flex items-center justify-between w-full px-6 py-3 text-left transition-colors mobile-dropdown-button hover:bg-gray-800"
+            >
+              Menu <span class="text-xl mobile-dropdown-icon">+</span>
+            </button>
+            <div
+              class="hidden bg-gray-900 mobile-dropdown-content dark:bg-black"
+            >
+              <a
+                href="#starters"
+                class="block px-10 py-2 transition-colors hover:bg-gray-800"
+                >Starters</a
+              >
+              <a
+                href="#main-dishes"
+                class="block px-10 py-2 transition-colors hover:bg-gray-800"
+                >Main Dishes</a
+              >
+              <a
+                href="#drinks"
+                class="block px-10 py-2 transition-colors hover:bg-gray-800"
+                >Drinks</a
+              >
+              <a
+                href="#desserts"
+                class="block px-10 py-2 transition-colors hover:bg-gray-800"
+                >Desserts</a
+              >
+            </div>
+          </div>
+
+          <a href="#story" class="px-6 py-3 transition-colors hover:bg-gray-800"
+            >Our Story</a
+          >
+          <a
+            href="#Signature-Dish"
+            class="px-6 py-3 transition-colors hover:bg-gray-800"
+            >Signature Dishes</a
+          >
+          <a
+            href="#feedback"
+            class="px-6 py-3 transition-colors hover:bg-gray-800"
             >Feedback Form</a
           >
+
+          <!-- Mobile Theme Toggle -->
+          <button
+            id="mobile-theme-toggle"
+            class="px-6 py-3 text-left transition-colors hover:bg-gray-800"
+          >
+            <span class="dark:hidden">🌙 Dark Mode</span>
+            <span class="hidden dark:inline">☀️ Light Mode</span>
+          </button>
         </nav>
-      </section>
+      </div>
     </header>
 
-    <div id="hero-section" class="relative h-screen overflow-hidden">
-      <!-- Slides Container -->
-      <div id="slides-container" class="relative w-full h-full">
-        <!-- Slides will be inserted here by JavaScript -->
-      </div>
-
-      <!-- Overlay Content (fixed position over slides) -->
+    <!-- Hero Section -->
+    <section
+      id="hero-section"
+      class="relative pt-[--header-height] h-[calc(100vh-var(--header-height))] bg-cover bg-center transition-all duration-1000"
+    >
+      <!-- Content Container -->
       <div
-        class="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center text-white"
+        class="container flex flex-col items-center justify-center h-full px-4 mx-auto text-center text-white"
       >
         <!-- Typewriter Animation Container -->
         <h1
           id="restaurant-name"
-          class="mb-4 text-4xl font-bold md:text-5xl font-playfair text-pretty"
+          class="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl font-playfair text-pretty"
         ></h1>
-
-        <p class="max-w-2xl mb-8 text-xl">Where Every Bite Tells a Story</p>
+        <p class="max-w-2xl mb-8 text-lg md:text-xl">
+          Where Every Bite Tells a Story
+        </p>
         <!-- CTA Button -->
         <button
-          class="relative px-8 py-3 text-lg font-bold text-white rounded-md bg-gradient-to-r from-ethiopian-red to-ethiopian-dark"
+          class="px-8 py-3 text-lg font-bold text-white transition-transform rounded-md bg-gradient-to-r from-ethiopian-red to-ethiopian-dark hover:scale-105"
         >
           Explore Our Menu
         </button>
       </div>
-    </div>
+    </section>
     <main>
+      <!--Our story-->
       <section
         id="story"
-        class="p-5 min-h-screen flex flex-col md:flex-col md:flex bg-[#d2b48c] dark:bg-black md:pt-20"
+        class="p-5 min-h-screen flex flex-col md:flex-col md:flex bg-[#d2b48c] dark:bg-slate-950 md:pt-20"
       >
         <div class="md:h-[500px] flex flex-col md:flex-row">
           <div
@@ -148,15 +252,19 @@
           </div>
         </div>
         <div
-          class="flex flex-row justify-center mb-5 ml-10 space-x-4 font-bold md:text-3xl text-customBrown md:mt-20"
+          class="flex flex-row justify-center mb-5 ml-10 space-x-4 font-bold md:text-3xl text-customBrown md:mt-32"
         >
           <p>Heritage</p>
           <p>Community</p>
           <p>Freshness</p>
         </div>
       </section>
-      <section class="bg-menu dark:bg-slate-950">
-        <section class="container w-full px-4 py-12 mx-auto">
+      <!--Our menu-->
+      <section class="py-20 bg-menu dark:bg-slate-950">
+        <section
+          class="container w-full px-4 py-12 mx-auto"
+          id="Signature-Dish"
+        >
           <div class="flex items-center justify-between mb-8">
             <div>
               <h2
@@ -193,10 +301,10 @@
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
                   Totot Kitfo
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Classic</p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Savory ground beef seasoned with Ethiopian spices.
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  Classic
                 </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
@@ -221,12 +329,10 @@
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
                   Gomen Kitfo
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
+                <p class="text-md text-menu-title dark:text-gray-400">
                   Classic kitfo with cabbage
                 </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Ground beef mixed with fresh cabbage and traditional spices.
-                </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
@@ -250,12 +356,10 @@
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
                   Ekot
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
+                <p class="text-md text-menu-title dark:text-gray-400">
                   Minced Cabbage
                 </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Finely chopped cabbage seasoned with herbs.
-                </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
@@ -279,12 +383,10 @@
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
                   Finta Fento
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
+                <p class="text-md text-menu-title dark:text-gray-400">
                   Spicy kitfo sauce with cheese
                 </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  A spicy blend of kitfo sauce topped with melted cheese.
-                </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
@@ -297,19 +399,44 @@
             >
               <div class="overflow-hidden">
                 <img
-                  src="./base/images/kitfo-1.jpg"
+                  src="./base/images/Ybeg_wat.png"
                   alt="Totot Kitfo"
                   class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div class="p-5">
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
-                  Totot Kitfo
+                  Ybeg wat
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">Classic</p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Savory ground beef seasoned with Ethiopian spices.
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  Spicy lamb stew
                 </p>
+
+                <p
+                  class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
+                >
+                  $22
+                </p>
+              </div>
+            </div>
+            <div
+              class="relative overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md dark:bg-gray-800 group hover:shadow-lg hover:-translate-y-1"
+            >
+              <div class="overflow-hidden">
+                <img
+                  src="./base/images/cheese-kitfo.jpg"
+                  alt="Gomen Kitfo"
+                  class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div class="p-5">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
+                  Cheese Kitfo
+                </h3>
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  Classic kitfo with ayib(cheese)
+                </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
@@ -322,25 +449,73 @@
             >
               <div class="overflow-hidden">
                 <img
-                  src="./base/images/gomen kitfo.jpg"
+                  src="./base/images/Raw meat.jpg"
                   alt="Gomen Kitfo"
                   class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div class="p-5">
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
-                  Gomen Kitfo
+                  Gorred gored
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Classic kitfo with cabbage
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  row meet
                 </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Ground beef mixed with fresh cabbage and traditional spices.
-                </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
                   $18
+                </p>
+              </div>
+            </div>
+            <div
+              class="relative overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md dark:bg-gray-800 group hover:shadow-lg hover:-translate-y-1"
+            >
+              <div class="overflow-hidden">
+                <img
+                  src="./base/images//doro wat be enjera.jpg"
+                  alt="Gomen Kitfo"
+                  class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div class="p-5">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
+                  Doro wat
+                </h3>
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  Spicy Chicken stew
+                </p>
+
+                <p
+                  class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
+                >
+                  $20
+                </p>
+              </div>
+            </div>
+            <div
+              class="relative overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md dark:bg-gray-800 group hover:shadow-lg hover:-translate-y-1"
+            >
+              <div class="overflow-hidden">
+                <img
+                  src="./base/images/shekla-tibs.webp"
+                  alt="Gomen Kitfo"
+                  class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div class="p-5">
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
+                  Tibs
+                </h3>
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  Chopped Fried Beef
+                </p>
+
+                <p
+                  class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
+                >
+                  $8
                 </p>
               </div>
             </div>
@@ -356,18 +531,16 @@
               </div>
               <div class="p-5">
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
-                  Gomen Kitfo
+                  Injera Platter
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Classic kitfo with cabbage
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  Fresh Vegetarian variety platter
                 </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Ground beef mixed with fresh cabbage and traditional spices.
-                </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
-                  $18
+                  $16
                 </p>
               </div>
             </div>
@@ -376,25 +549,23 @@
             >
               <div class="overflow-hidden">
                 <img
-                  src="./base/images/gomen kitfo.jpg"
+                  src="./base/images/tegabino.jpg"
                   alt="Gomen Kitfo"
                   class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div class="p-5">
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
-                  Gomen Kitfo
+                  Tegabino
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Classic kitfo with cabbage
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  Fasting stew(vegetarian)
                 </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Ground beef mixed with fresh cabbage and traditional spices.
-                </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
-                  $18
+                  $12
                 </p>
               </div>
             </div>
@@ -403,112 +574,31 @@
             >
               <div class="overflow-hidden">
                 <img
-                  src="./base/images/gomen kitfo.jpg"
-                  alt="Gomen Kitfo"
+                  src="./base/images/tej 2.jpg"
+                  alt="drink picture"
                   class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div class="p-5">
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white">
-                  Gomen Kitfo
+                  Honey Wine
                 </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Classic kitfo with cabbage
+                <p class="text-md text-menu-title dark:text-gray-400">
+                  sweet ethiopian traditional Drinks
                 </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Ground beef mixed with fresh cabbage and traditional spices.
-                </p>
+
                 <p
                   class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
                 >
-                  $18
-                </p>
-              </div>
-            </div>
-            <div
-              class="relative overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md dark:bg-gray-800 group hover:shadow-lg hover:-translate-y-1"
-            >
-              <div class="overflow-hidden">
-                <img
-                  src="./base/images/gomen kitfo.jpg"
-                  alt="Gomen Kitfo"
-                  class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div class="p-5">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
-                  Gomen Kitfo
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Classic kitfo with cabbage
-                </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Ground beef mixed with fresh cabbage and traditional spices.
-                </p>
-                <p
-                  class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
-                >
-                  $18
-                </p>
-              </div>
-            </div>
-            <div
-              class="relative overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md dark:bg-gray-800 group hover:shadow-lg hover:-translate-y-1"
-            >
-              <div class="overflow-hidden">
-                <img
-                  src="./base/images/gomen kitfo.jpg"
-                  alt="Gomen Kitfo"
-                  class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div class="p-5">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
-                  Gomen Kitfo
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Classic kitfo with cabbage
-                </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Ground beef mixed with fresh cabbage and traditional spices.
-                </p>
-                <p
-                  class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
-                >
-                  $18
-                </p>
-              </div>
-            </div>
-            <div
-              class="relative overflow-hidden transition-all duration-300 bg-white rounded-lg shadow-md dark:bg-gray-800 group hover:shadow-lg hover:-translate-y-1"
-            >
-              <div class="overflow-hidden">
-                <img
-                  src="./base/images/gomen kitfo.jpg"
-                  alt="Gomen Kitfo"
-                  class="object-cover w-full h-48 transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div class="p-5">
-                <h3 class="text-xl font-bold text-gray-800 dark:text-white">
-                  Gomen Kitfo
-                </h3>
-                <p class="text-sm text-gray-600 dark:text-gray-400">
-                  Classic kitfo with cabbage
-                </p>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                  Ground beef mixed with fresh cabbage and traditional spices.
-                </p>
-                <p
-                  class="mt-3 text-lg font-bold text-brown-500 dark:text-brown-300"
-                >
-                  $18
+                  $10
                 </p>
               </div>
             </div>
           </div>
         </section>
       </section>
+      <!--Chat bot -->
+      <section></section>
       <section class="container max-w-4xl px-4 py-8 mx-auto">
         <!-- Header -->
         <header class="mb-8 text-center">
@@ -620,7 +710,7 @@
           <div class="container px-4 mx-auto max-w-7xl">
             <div class="grid gap-12 md:grid-cols-2">
               <!-- Contact Form -->
-              <div class="p-8 rounded-sm shadow-sm dark:bg-gray-800">
+              <div class="p-8 rounded-sm shadow-sm dark:bg-gray-600">
                 <h1 class="mb-6 text-3xl font-bold text-white dark:text-white">
                   Get in Touch
                 </h1>
@@ -710,55 +800,55 @@
               <!-- Contact Information -->
               <div class="md:mt-44">
                 <div
-                  class="flex-col gap-8 p-6 bg-transparent md:flex-row md:flex md:items-center dark:bg-gray-800"
+                  class="flex-col gap-8 p-6 bg-transparent md:flex-row md:flex md:items-center"
                 >
-                  <div class="">
+                  <div class="p-2">
                     <i class="text-white fa-solid fa-envelope"></i>
                     <h3
                       class="text-xl font-semibold text-white dark:text-white"
                     >
                       Email
                     </h3>
-                    <p class="mb-2 text-gray-300 dark:text-gray-300">
+                    <p class="mb-2 text-white dark:text-gray-300">
                       Connect us anytime!
                     </p>
                     <a
                       href="mailto:info@twotreetguard.com"
-                      class="text-brown-500 hover:text-brown-700 dark:text-brown-400 dark:hover:text-brown-300"
-                      >info@t wotreetguard.com</a
-                    >>
+                      class="text-white hover:text-brown-700 dark:text-brown-400 dark:hover:text-brown-300"
+                      >info@tototrestaurant.com</a
+                    >
                   </div>
 
-                  <div class="">
+                  <div class="p-2">
                     <i class="text-white fa-solid fa-phone"></i>
                     <h3
                       class="text-xl font-semibold text-white dark:text-white"
                     >
                       Phone
                     </h3>
-                    <p class="mb-2 text-gray-300 dark:text-gray-300">
-                      Connect us anytime!
+                    <p class="mb-2 text-white dark:text-gray-300">
+                      Reach us at
                     </p>
                     <a
                       href="mailto:info@twotreetguard.com"
-                      class="text-brown-500 hover:text-brown-700 dark:text-brown-400 dark:hover:text-brown-300"
-                      >info@t wotreetguard.com</a
-                    >>
+                      class="text-white hover:text-brown-700 dark:text-brown-400 dark:hover:text-brown-300"
+                      >+251 123 456 789</a
+                    >
                   </div>
                 </div>
-                <div class="mx-7">
-                  <i class="text-white fa-solid fa-phone"></i>
+                <div class="p-2 mx-7">
+                  <i class="text-white fa-solid fa-location-dot"></i>
                   <h3 class="text-xl font-semibold text-white dark:text-white">
-                    Phone
+                    Address
                   </h3>
-                  <p class="mb-2 text-gray-300 dark:text-gray-300">
-                    Connect us anytime!
+                  <p class="mb-2 text-white dark:text-gray-300">
+                    123 Bole Road,, Addis Ababa, Ethiopia
                   </p>
                   <a
                     href="mailto:info@twotreetguard.com"
-                    class="text-brown-500 hover:text-brown-700 dark:text-brown-400 dark:hover:text-brown-300"
-                    >info@t wotreetguard.com</a
-                  >>
+                    class="text-white hover:text-brown-700 dark:text-brown-400 dark:hover:text-brown-300"
+                    >Get Directions
+                  </a>
                 </div>
               </div>
             </div>
@@ -1047,5 +1137,7 @@
         </div>
       </div>
     </footer>
+    <script src="./base/js/contact.js"></script>
+    <script src="./base/js/hero.js"></script>
   </body>
 </html>
