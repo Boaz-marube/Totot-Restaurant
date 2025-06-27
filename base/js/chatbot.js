@@ -134,16 +134,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Quick question buttons
-  document.querySelectorAll("button").forEach((button) => {
-    if (button.id !== "sendMessageButton") {
-      button.addEventListener("click", () => {
-        const question = button.textContent.trim();
-        if (question) {
-          sendMessage(question);
-        }
-      });
-    }
+  // Quick question buttons - ONLY targets buttons with class 'chat-question'
+  document.querySelectorAll("button.chat-question").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent event bubbling
+      const question = button.textContent.trim();
+      if (question) {
+        sendMessage(question);
+      }
+    });
   });
 });
 
