@@ -1,5 +1,5 @@
 // Configuration - Update this with your actual backend URL
-const BACKEND_URL = "http://127.0.0.1:8000/chat"; // Change this to your backend endpoint
+const BACKEND_URL ="https://totot-chatbot.onrender.com/chat"; // Change this to your backend endpoint
 
 // DOM Elements
 const chatInput = document.getElementById("chatInput");
