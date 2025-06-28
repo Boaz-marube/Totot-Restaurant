@@ -36,14 +36,14 @@ origins = [
 
     # IMPORTANT: I will add the actual deployed URL(s) of our frontend website here.
     
-    "https://our-totot-restaurant.com",
-    "https://www.our-totot-restaurant.com",
+    "https://tototrestaurant.netlify.app",
+    "https://totot-chatbot.onrender.com",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],          # List of origins that are allowed to make requests
-    allow_credentials=False,         # Allowing cookies to be included in cross-origin requests
+    allow_credentials=True,         # Allowing cookies to be included in cross-origin requests
     allow_methods=["*"],            # Allowing all standard HTTP methods (GET, POST, PUT etc.)
     allow_headers=["*"],            # Allowing all headers from the frontend in cross-origin requests
 )
