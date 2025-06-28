@@ -26,15 +26,16 @@ app = FastAPI(title="Totot Traditional Restaurant Chatbot API")
 
 # --- CORS Configuration --- 
 origins = [
-    "http://localhost:3000",       
-    "http://127.0.0.1:3000",     
-    "http://localhost:8000",       
-    "http://127.0.0.1:8000",     
+    "*",
+    # "http://localhost:3000",       
+    # "http://127.0.0.1:3000",     
+    # "http://localhost:8000",       
+    # "http://127.0.0.1:8000",     
 
     # IMPORTANT: I will add the actual deployed URL(s) of our frontend website here.
     
-    "https://tototrestaurant.netlify.app",
-    "https://totot-chatbot.onrender.com",
+    # "https://tototrestaurant.netlify.app",
+    # "https://totot-chatbot.onrender.com",
 ]
 
 app.add_middleware(
