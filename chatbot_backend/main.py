@@ -33,8 +33,8 @@ origins = [
 
     # IMPORTANT: I will add the actual deployed URL(s) of our frontend website here.
     
-    "https://our-totot-restaurant.com",
-    "https://www.our-totot-restaurant.com",
+    "https://tototrestaurant.netlify.app",
+    "https://totot-chatbot.onrender.com",
 ]
 
 app.add_middleware(
