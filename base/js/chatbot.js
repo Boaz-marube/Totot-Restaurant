@@ -1,13 +1,15 @@
-// Configuration - Update this with your actual backend URL
-const BACKEND_URL ="https://totot-chatbot.onrender.com/chat"; // Change this to your backend endpoint
+const BACKEND_URL = "https://totot-restaurant.onrender.com";
 
-// DOM Elements
+// --- DOM Elements ---
 const chatInput = document.getElementById("chatInput");
 const sendMessageButton = document.getElementById("sendMessageButton");
 const chatDisplay = document.getElementById("chatDisplay");
+// Only select buttons with class "chat-question" (the quick question buttons)
+const quickQuestionButtons = document.querySelectorAll(".chat-question");
 
-// Function to add message to chat display
+// ---  Add a message bubble ---
 function addMessageToChat(message, isUser = true) {
+  const chatDisplay = document.getElementById("chatDisplay");
   const messageDiv = document.createElement("div");
   messageDiv.className = `mb-4 ${isUser ? "text-right" : "text-left"}`;
 
@@ -26,8 +28,9 @@ function addMessageToChat(message, isUser = true) {
   chatDisplay.scrollTop = chatDisplay.scrollHeight;
 }
 
-// Function to show typing indicator
+// --- Function to show typing indicator ---
 function showTypingIndicator() {
+  const chatDisplay = document.getElementById("chatDisplay");
   const typingDiv = document.createElement("div");
   typingDiv.id = "typingIndicator";
   typingDiv.className = "mb-4 text-left";
@@ -43,7 +46,7 @@ function showTypingIndicator() {
   chatDisplay.scrollTop = chatDisplay.scrollHeight;
 }
 
-// Function to remove typing indicator
+// --- Function to remove typing indicator ---
 function removeTypingIndicator() {
   const typingIndicator = document.getElementById("typingIndicator");
   if (typingIndicator) {
@@ -51,123 +54,106 @@ function removeTypingIndicator() {
   }
 }
 
-// Send message to backend
-async function sendMessage(message) {
+// --- Main Chat Function ---
+async function sendMessage(message = chatInput.value.trim()) {
+  if (!message) return;
+
+  addMessageToChat(message, true); // Add user message
+  chatInput.value = ""; // Clear input immediately
+  showTypingIndicator(); // Show typing indicator
+
   try {
-    // Add user message to chat
-    addMessageToChat(message, true);
-
-    // Clear input field
-    if (chatInput) {
-      chatInput.value = "";
-    }
-
-    // Show typing indicator
-    showTypingIndicator();
-
-    const response = await fetch(BACKEND_URL, {
+    const response = await fetch(`${BACKEND_URL}/chat`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        question: message,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: message }),
     });
 
-    // Remove typing indicator
-    removeTypingIndicator();
+    removeTypingIndicator(); // Remove typing indicator once response is received
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await response
+        .json()
+        .catch(() => ({ detail: "Unknown server error" }));
+      throw new Error(
+        `HTTP error! status: ${response.status}, Detail: ${
+          errorData.detail || "No detail provided"
+        }`
+      );
     }
 
     const data = await response.json();
     console.log("Backend response:", data);
 
-    // Extract bot response and add to chat
-    const botResponse =
-      data.response ||
-      data.answer ||
-      data.message ||
-      "Sorry, I received an empty response.";
-    addMessageToChat(botResponse, false);
+    const botResponse = data.answer || "Hmm, no response. Try again?";
+    addMessageToChat(botResponse, false); // Add bot response
   } catch (error) {
     console.error("Error sending message:", error);
-
-    // Remove typing indicator in case of error
     removeTypingIndicator();
-
-    // Show error message to user
     addMessageToChat(
-      "Sorry, there was an error processing your message. Please try again.",
+      "Sorry, I'm having trouble connecting to the server. Please try again later.",
       false
     );
   }
 }
 
-// Event Listeners
+// --- Event Listeners ---
 document.addEventListener("DOMContentLoaded", () => {
-  if (chatDisplay) chatDisplay.innerHTML = "";
+  // Clear chat display on load if desired (useful for development)
+  if (chatDisplay) {
+    chatDisplay.innerHTML = "";
+  }
 
-  // Welcome message
-  addMessageToChat(
-    "👋 Welcome to Totot! Ask me anything about our dishes or services.",
-    false
-  );
+  // Send message on button click
+  if (sendMessageButton) {
+    sendMessageButton.addEventListener("click", () => sendMessage());
+  }
 
-  // Send button click
-  sendMessageButton?.addEventListener("click", () => {
-    const message = chatInput.value.trim();
-    if (message) {
-      sendMessage(message);
-    }
-  });
-
-  // Enter key press
-  chatInput?.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      const message = chatInput.value.trim();
-      if (message) {
-        sendMessage(message);
+  // Send message on Enter key press in input field
+  if (chatInput) {
+    chatInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault(); // Prevent default form submission if any
+        sendMessage();
       }
-    }
-  });
+    });
+  }
 
-  // Quick question buttons - ONLY targets buttons with class 'chat-question'
-  document.querySelectorAll("button.chat-question").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent event bubbling
+  // Handle quick question buttons (now only buttons with class "chat-question")
+  quickQuestionButtons.forEach((button) => {
+    button.addEventListener("click", () => {
       const question = button.textContent.trim();
       if (question) {
         sendMessage(question);
       }
     });
   });
-});
 
-// Typing animation CSS
-const style = document.createElement("style");
-style.textContent = `
-  .typing-dots span {
-    animation: typing 1.4s infinite;
-  }
-  .typing-dots span:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  .typing-dots span:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-  .typing-dots span:nth-child(4) {
-    animation-delay: 0.6s;
-  }
-  @keyframes typing {
-    0%, 60%, 100% {
-      opacity: 0;
-    }
-    30% {
-      opacity: 1;
-    }
-  }
-`;
-document.head.appendChild(style);
+  // Initial welcome message
+  addMessageToChat(
+    "👋 Welcome to Totot! Ask me anything about our dishes or services.",
+    false
+  );
+
+  const style = document.createElement("style");
+  style.textContent = `
+        .typing-dots span {
+            animation: typing 1.4s infinite;
+        }
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes typing {
+            0%, 60%, 100% {
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+    `;
+  document.head.appendChild(style);
+});
